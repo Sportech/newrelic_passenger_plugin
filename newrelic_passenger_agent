@@ -34,10 +34,10 @@ module PassengerAgent
       valid_passenger_versions = [3, 4]
 
       raise ConfigurationError, "passenger_version config variable must be set" unless defined?(passenger_version)
-      raise ConfigurationError, "Passenger version must be one of #{valid_passenger_versions}" unless valid_passenger_versions.include?(passenger_version)
+      raise ConfigurationError, "Passenger version must be one of #{valid_passenger_versions}" unless valid_passenger_versions.include?(passenger_version.to_i)
 
       @memory_stats_parser = PassengerMemoryStatsParser.new
-      @status_parser = PassengerStatusParser.new(passenger_version)
+      @status_parser = PassengerStatusParser.new(passenger_version.to_i)
     end
 
 
